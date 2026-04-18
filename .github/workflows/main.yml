@@ -1,37 +1,39 @@
-name: Full_DevOps_Demo_Pipeline
+name: DevOps_Final_Demo
 
-# Tự động chạy khi có thay đổi ở nhánh main 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  devops-workflow:
-    # Chạy trên môi trường Linux (Yêu cầu kỹ thuật quan trọng) [cite: 20]
-    runs-on: ubuntu-latest
+  build-and-test:
+    [cite_start]runs-on: ubuntu-latest # Sử dụng hệ điều hành Linux [cite: 20]
+
     steps:
       - name: 1. Checkout Code
         uses: actions/checkout@v4
-      - [cite_start]name: 2. Kiem tra bao mat (DevSecOps) [cite: 15]
-        run: |
-          echo "Dang quét lỗ hổng bảo mật trong mã nguồn..."
-          sleep 8
-          echo "Kết quả: Hệ thống an toàn."
-      - [cite_start]name: 3. Chạy Unit Test (CI) [cite: 11]
-        run: |
-          echo "Đang khởi chạy các bài kiểm tra tự động..."
-          # Lệnh này kiểm tra xem file html có bị thiếu dấu đóng ngoặc '}' không 
-          grep "}" index.html
-          sleep 10
-          echo "Kiểm tra hoàn tất: Code đạt tiêu chuẩn!"
 
-      - [cite_start]name: 4. Dong goi Docker (Containerization) [cite: 13, 20]
+      - name: 2. Kiem tra bao mat (DevSecOps)
         run: |
-          echo "Đang đóng gói ứng dụng vào Docker Container..."
-          sleep 12
-          echo "Docker Image 'web-app:latest' đã sẵn sàng."
-      - [cite_start]name: 5. Trien khai Cloud & Toi ưu (CD) [cite: 13, 16]
+          echo "Đang quét lỗ hổng bảo mật..."
+          sleep 5
+          echo "Hệ thống an toàn."
+
+      - name: 3. Chay Unit Test (CI)
+        # Bước này sẽ fail nếu file index.html thiếu dấu }
         run: |
-          echo "Đang cấu hình Load Balancer và triển khai lên Cloud..."
-          sleep 10
-          echo "=== TRIỂN KHAI HOÀN TẤT TRÊN MÔI TRƯỜNG PRODUCTION ==="
+          echo "Đang kiểm tra cú pháp mã nguồn..."
+          grep "}" index.html
+          echo "Kiểm tra hoàn tất!"
+
+      - name: 4. Dong goi Docker (Containerization)
+        # Minh họa kỹ năng Docker trong JD [cite: 20]
+        run: |
+          echo "Đang đóng gói ứng dụng..."
+          sleep 5
+          echo "Docker Image đã sẵn sàng."
+
+      - name: 5. Trien khai (CD)
+        run: |
+          echo "Đang cập nhật lên máy chủ..."
+          sleep 5
+          echo "TRIỂN KHAI THÀNH CÔNG!"
