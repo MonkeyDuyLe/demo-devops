@@ -1,4 +1,4 @@
-name: DevOps_Final_Demo_Fixed
+name: DevOps_Final_Demo
 
 on:
   push:
@@ -6,24 +6,24 @@ on:
 
 jobs:
   devops-workflow:
-    # Chạy trên môi trường Linux 
+    # Yêu cầu thành thạo Linux [cite: 20]
     runs-on: ubuntu-latest
 
     steps:
       - name: 1. Checkout Code
         uses: actions/checkout@v4
 
-      - [cite_start]name: 2. Kiem tra bao mat (DevSecOps) [cite: 15]
+      - name: 2. Kiem tra bao mat (DevSecOps)
+        # Tích hợp kiểm tra bảo mật sớm [cite: 15]
         run: |
-          echo "Dang quet lo hong bao mat trong ma nguon..."
+          echo "Dang quet lo hong bao mat..."
           sleep 5
           echo "Ket qua: He thong an toan."
 
-      - [cite_start]name: 3. Chay Unit Test (CI) [cite: 11]
-        # Buoc nay dung de demo Troubleshooting 
+      - name: 3. Chay Unit Test (CI)
+        # Quản lý Pipeline CI/CD 
         run: |
           echo "Dang kiem tra cu phap CSS trong file index.html..."
-          # Lenh nay tim dong background-color va bat buoc phai co dau } o cuoi dong do
           if grep "background-color" index.html | grep -q "}"; then
             echo "Thanh cong: Tim thay dau ngoac nhon '}'."
           else
@@ -31,13 +31,15 @@ jobs:
             exit 1
           fi
 
-      - [cite_start]name: 4. Dong goi Docker (Containerization) [cite: 13, 20]
+      - name: 4. Dong goi Docker (Containerization)
+        # Minh họa kỹ năng Docker & Container [cite: 13, 20]
         run: |
           echo "Dang build Docker Image 'web-app:v1'..."
           sleep 8
           echo "Build thanh cong!"
 
-      - [cite_start]name: 5. Trien khai Cloud & Toi uu (CD) [cite: 11, 16]
+      - name: 5. Trien khai Cloud & Toi uu (CD)
+        # Triển khai và tối ưu hóa tài nguyên Cloud [cite: 13, 16]
         run: |
           echo "Dang cau hinh Load Balancer va trien khai len Cloud..."
           sleep 5
