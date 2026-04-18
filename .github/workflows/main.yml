@@ -21,13 +21,15 @@ jobs:
           echo "Ket qua: He thong an toan."
 
       - name: 3. Chay Unit Test (CI)
-        # Xây dựng hệ thống tự động để kiểm thử code [cite: 11]
         run: |
-          echo "Dang kiem tra cu phap ma nguon..."
-          # Lenh nay kiem tra dau ngoac nhon de demo Troubleshooting 
-          grep "}" index.html
-          sleep 10
-          echo "Kiem tra hoan tat: Code dat tieu chuan!"
+          echo "Dang kiem tra cu phap CSS..."
+          # Kiểm tra dòng background-color phải có dấu ; và } ở cuối
+          if grep "background-color" index.html | grep -q "}"; then
+            echo "Code hop le!"
+          else
+            echo "LOI: Thieu dau ngoac nhon '}' o dong cau hinh mau sac!"
+            exit 1
+          fi
 
       - name: 4. Dong goi Docker (Containerization)
         # Minh hoa ky nang quan ly Container [cite: 13, 20]
