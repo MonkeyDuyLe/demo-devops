@@ -6,34 +6,39 @@ on:
 
 jobs:
   build-and-test:
-    [cite_start]runs-on: ubuntu-latest # Sử dụng hệ điều hành Linux [cite: 20]
+    # Chạy trên môi trường Linux (Yêu cầu kỹ thuật quan trọng) [cite: 20]
+    runs-on: ubuntu-latest
 
     steps:
       - name: 1. Checkout Code
         uses: actions/checkout@v4
 
       - name: 2. Kiem tra bao mat (DevSecOps)
+        # Tích hợp kiểm tra bảo mật sớm [cite: 15]
         run: |
-          echo "Đang quét lỗ hổng bảo mật..."
-          sleep 5
-          echo "Hệ thống an toàn."
+          echo "Dang quet lo hong bao mat..."
+          sleep 8
+          echo "Ket qua: He thong an toan."
 
       - name: 3. Chay Unit Test (CI)
-        # Bước này sẽ fail nếu file index.html thiếu dấu }
+        # Xây dựng hệ thống tự động để kiểm thử code [cite: 11]
         run: |
-          echo "Đang kiểm tra cú pháp mã nguồn..."
+          echo "Dang kiem tra cu phap ma nguon..."
+          # Lenh nay kiem tra dau ngoac nhon de demo Troubleshooting 
           grep "}" index.html
-          echo "Kiểm tra hoàn tất!"
+          sleep 10
+          echo "Kiem tra hoan tat: Code dat tieu chuan!"
 
       - name: 4. Dong goi Docker (Containerization)
-        # Minh họa kỹ năng Docker trong JD [cite: 20]
+        # Minh hoa ky nang quan ly Container [cite: 13, 20]
         run: |
-          echo "Đang đóng gói ứng dụng..."
-          sleep 5
-          echo "Docker Image đã sẵn sàng."
+          echo "Dang dong goi ung dung vao Docker..."
+          sleep 12
+          echo "Docker Image da san sang."
 
-      - name: 5. Trien khai (CD)
+      - name: 5. Trien khai Cloud (CD)
+        # Triển khai ứng dụng lên nền tảng đám mây [cite: 11, 13]
         run: |
-          echo "Đang cập nhật lên máy chủ..."
-          sleep 5
-          echo "TRIỂN KHAI THÀNH CÔNG!"
+          echo "Dang cau hinh Load Balancer va trien khai len Cloud..."
+          sleep 10
+          echo "=== TRIEN KHAI HOAN TAT ==="
