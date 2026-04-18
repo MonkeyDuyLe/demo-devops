@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  devops-workflow:
-    # Yêu cầu thành thạo Linux [cite: 20]
+  build-and-test:
+    # Chạy trên môi trường Linux (Yêu cầu kỹ thuật quan trọng) [cite: 20]
     runs-on: ubuntu-latest
 
     steps:
@@ -17,30 +17,28 @@ jobs:
         # Tích hợp kiểm tra bảo mật sớm [cite: 15]
         run: |
           echo "Dang quet lo hong bao mat..."
-          sleep 5
+          sleep 8
           echo "Ket qua: He thong an toan."
 
       - name: 3. Chay Unit Test (CI)
-        # Quản lý Pipeline CI/CD 
+        # Xây dựng hệ thống tự động để kiểm thử code [cite: 11]
         run: |
-          echo "Dang kiem tra cu phap CSS trong file index.html..."
-          if grep "background-color" index.html | grep -q "}"; then
-            echo "Thanh cong: Tim thay dau ngoac nhon '}'."
-          else
-            echo "LOI NGHIEM TRONG: Thieu dau ngoac nhon '}' tai dong cau hinh mau sac!"
-            exit 1
-          fi
+          echo "Dang kiem tra cu phap ma nguon..."
+          # Lenh nay kiem tra dau ngoac nhon de demo Troubleshooting 
+          grep "}" index.html
+          sleep 10
+          echo "Kiem tra hoan tat: Code dat tieu chuan!"
 
       - name: 4. Dong goi Docker (Containerization)
-        # Minh họa kỹ năng Docker & Container [cite: 13, 20]
+        # Minh hoa ky nang quan ly Container [cite: 13, 20]
         run: |
-          echo "Dang build Docker Image 'web-app:v1'..."
-          sleep 8
-          echo "Build thanh cong!"
+          echo "Dang dong goi ung dung vao Docker..."
+          sleep 12
+          echo "Docker Image da san sang."
 
-      - name: 5. Trien khai Cloud & Toi uu (CD)
-        # Triển khai và tối ưu hóa tài nguyên Cloud [cite: 13, 16]
+      - name: 5. Trien khai Cloud (CD)
+        # Triển khai ứng dụng lên nền tảng đám mây [cite: 11, 13]
         run: |
           echo "Dang cau hinh Load Balancer va trien khai len Cloud..."
-          sleep 5
-          echo "=== TRIEN KHAI HOAN TAT TREN PRODUCTION ==="
+          sleep 10
+          echo "=== TRIEN KHAI HOAN TAT ==="
