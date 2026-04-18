@@ -1,21 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <title>Demo DevOps CI/CD</title>
+    <meta charset="UTF-8">
+    <title>DevOps CI/CD Demo</title>
     <style>
         body {
-            /* Bước demo: Bạn sẽ đổi màu 'skyblue' thành 'tomato' trong video */
-            background-color: blue; 
+            /* Bước demo: Đổi 'skyblue' thành 'orange' hoặc 'red' để kích hoạt pipeline */
+            background-color: skyblue; 
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100;
-            font-family: Arial, sans-serif;
-            ádasdasd
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Trạng thái: Đã triển khai tự động (CI/CD) thành công!</h1>
+    <div class="card">
+        <h1>Hệ thống: Đã cập nhật thành công!</h1>
+        <p>Trạng thái: <strong>Hoạt động ổn định</strong></p>
+        <p>Triển khai tự động bởi: <strong>GitHub Actions</strong></p>
+    </div>
 </body>
 </html>
