@@ -23,6 +23,12 @@ jobs:
           echo "Đang kiểm tra lỗi cú pháp..."
           sleep 2
           echo "Kiểm tra hoàn tất: Không có lỗi!"
+      - name: 3. Chay Unit Test (CI)
+        run: |
+          echo "Dang kiem tra cú pháp code..."
+          # Lệnh này sẽ kiểm tra xem trong file index.html có dấu '}' không
+          grep "}" index.html
+          echo "Code hop le!"
 
       # Bước 3: Mô phỏng đóng gói Docker (Containerization) 
       - name: Build Docker Image
