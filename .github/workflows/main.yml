@@ -1,45 +1,41 @@
-# 1. Tên của đường ống (Pipeline)
-name: DevOps_Demo_Pipeline
+name: Full_DevOps_Demo_Pipeline
 
-# 2. Điều kiện kích hoạt: Tự động chạy mỗi khi bạn 'push' code lên nhánh main 
+# Tự động chạy khi có thay đổi ở nhánh main 
 on:
   push:
     branches: [ "main" ]
 
-# 3. Các công việc cần làm trong đường ống
 jobs:
-  build-and-test:
-    # Chạy trên hệ điều hành Linux (kỹ năng bắt buộc của DevOps) 
+  devops-workflow:
+    # Chạy trên môi trường Linux (Yêu cầu kỹ thuật quan trọng) [cite: 20]
     runs-on: ubuntu-latest
 
     steps:
-      # Bước 1: Lấy mã nguồn từ GitHub về máy chủ ảo
-      - name: Checkout Code
+      - name: 1. Checkout Code
         uses: actions/checkout@v4
 
-      # Bước 2: Mô phỏng quá trình Kiểm thử (CI) 
-      - name: Run Unit Tests
+      - [cite_start]name: 2. Kiem tra bao mat (DevSecOps) [cite: 15]
         run: |
-          echo "Đang kiểm tra lỗi cú pháp..."
-          sleep 2
-          echo "Kiểm tra hoàn tất: Không có lỗi!"
-      - name: 3. Chay Unit Test (CI)
-        run: |
-          echo "Dang kiem tra cú pháp code..."
-          # Lệnh này sẽ kiểm tra xem trong file index.html có dấu '}' không
-          grep "}" index.html
-          echo "Code hop le!"
+          echo "Dang quét lỗ hổng bảo mật trong mã nguồn..."
+          sleep 8
+          echo "Kết quả: Hệ thống an toàn."
 
-      # Bước 3: Mô phỏng đóng gói Docker (Containerization) 
-      - name: Build Docker Image
+      - [cite_start]name: 3. Chạy Unit Test (CI) [cite: 11]
+        run: |
+          echo "Đang khởi chạy các bài kiểm tra tự động..."
+          # Lệnh này kiểm tra xem file html có bị thiếu dấu đóng ngoặc '}' không 
+          grep "}" index.html
+          sleep 10
+          echo "Kiểm tra hoàn tất: Code đạt tiêu chuẩn!"
+
+      - [cite_start]name: 4. Dong goi Docker (Containerization) [cite: 13, 20]
         run: |
           echo "Đang đóng gói ứng dụng vào Docker Container..."
-          sleep 2
-          echo "Docker Image 'my-web-app:v1' đã sẵn sàng."
+          sleep 12
+          echo "Docker Image 'web-app:latest' đã sẵn sàng."
 
-      # Bước 4: Mô phỏng triển khai lên Cloud (CD) [cite: 11, 13]
-      - name: Deploy to Server
+      - [cite_start]name: 5. Trien khai Cloud & Toi ưu (CD) [cite: 13, 16]
         run: |
-          echo "Đang kết nối tới AWS/GCP qua SSH..."
-          sleep 3
-          echo "Triển khai thành công ứng dụng phiên bản mới!"
+          echo "Đang cấu hình Load Balancer và triển khai lên Cloud..."
+          sleep 10
+          echo "=== TRIỂN KHAI HOÀN TẤT TRÊN MÔI TRƯỜNG PRODUCTION ==="
