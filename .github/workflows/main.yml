@@ -8,7 +8,7 @@ jobs:
   build-and-test:
     # Chạy trên môi trường Linux (Yêu cầu kỹ thuật quan trọng) [cite: 20]
     runs-on: ubuntu-latest
-222
+
     steps:
       - name: 1. Checkout Code
         uses: actions/checkout@v4
