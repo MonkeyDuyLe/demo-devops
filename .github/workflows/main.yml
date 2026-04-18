@@ -1,36 +1,39 @@
-# This is a basic workflow to help you get started with Actions
+# 1. Tên của đường ống (Pipeline)
+name: DevOps_Demo_Pipeline
 
-name: CI
-
-# Controls when the workflow will run
+# 2. Điều kiện kích hoạt: Tự động chạy mỗi khi bạn 'push' code lên nhánh main 
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# 3. Các công việc cần làm trong đường ống
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  build-and-test:
+    # Chạy trên hệ điều hành Linux (kỹ năng bắt buộc của DevOps) 
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # Bước 1: Lấy mã nguồn từ GitHub về máy chủ ảo
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Bước 2: Mô phỏng quá trình Kiểm thử (CI) 
+      - name: Run Unit Tests
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "Đang kiểm tra lỗi cú pháp..."
+          sleep 2
+          echo "Kiểm tra hoàn tất: Không có lỗi!"
+
+      # Bước 3: Mô phỏng đóng gói Docker (Containerization) 
+      - name: Build Docker Image
+        run: |
+          echo "Đang đóng gói ứng dụng vào Docker Container..."
+          sleep 2
+          echo "Docker Image 'my-web-app:v1' đã sẵn sàng."
+
+      # Bước 4: Mô phỏng triển khai lên Cloud (CD) [cite: 11, 13]
+      - name: Deploy to Server
+        run: |
+          echo "Đang kết nối tới AWS/GCP qua SSH..."
+          sleep 3
+          echo "Triển khai thành công ứng dụng phiên bản mới!"
